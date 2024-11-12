@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservation - TravelTales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="#" alt="">
+                <h1>TravelTales</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="login_register.html" class="nav-link">Login/Register</a></li>
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="#" class="nav-link search-icon"><i class="fas fa-search"></i></a></li>
+                    <li><a href="profile.html" class="nav-link"><i class="fas fa-user"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hotel Reservation Form Section -->
+    <section class="reservation-form">
+        <div class="container">
+            <h2>Hotel Reservation</h2>
+            <p>Book your stay at the best hotels around the world with TravelTales.</p>
+            <form action="hotel_reservation_form.php" method="POST" class="form">
+                <div class="form-group">
+                    <label for="hotel-name">Hotel Name</label>
+                    <select id="hotel_name" name="hotel_name" required>
+                        <option value="" disabled selected>Select a Hotel</option>
+                        <option value="The Ritz-Carlton, Paris">The Ritz-Carlton, Paris</option>
+                        <option value="Marina Bay Sands, Singapore">Marina Bay Sands, Singapore</option>
+                        <option value="Four Seasons Hotel, New York">Four Seasons Hotel, New York</option>
+                        <option value="The Oberoi, Mumbai">The Oberoi, Mumbai</option>
+                        <option value="Hotel de Russie, Rome">Hotel de Russie, Rome</option>
+                        <option value="Burj Al Arab, Dubai">Burj Al Arab, Dubai</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="check-in">Check-in Date</label>
+                    <input type="date" id="check-in" name="checkin_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="check-out">Check-out Date</label>
+                    <input type="date" id="check-out" name="checkout_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" name="guests" min="1" max="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="rooms">Number of Rooms</label>
+                    <input type="number" id="rooms" name="rooms" min="1" max="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="special-requests">Special Requests</label>
+                    <textarea id="special-requests" name="special_requests" placeholder="Any special requests..."></textarea>
+                </div>
+                <a href="services.html" class="btn">Back</a> <button type="submit" class="btn">Reserve Now</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TravelTales. All rights reserved.</p>
+        </div>
+        <div>
+            <h3>Follow Us</h3>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

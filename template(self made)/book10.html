@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Package - TravelTales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Flatpickr CSS for date picker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="#" alt="">
+                <h1>TravelTales</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="login_register.html" class="nav-link" id="login_register.html">Login/Register</a></li>
+                    <li><a href="home.html" class="nav-link" id="home.html">Home</a></li>
+                    <li><a href="services.html" class="nav-link" id="services.html">Services</a></li>
+                    <li><a href="packages.html" class="nav-link" id="packages.html">Packages</a></li>
+                    <li><a href="blog.html" class="nav-link" id="blog.html">Blog</a></li>
+                    <li><a href="about.html" class="nav-link" id="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link" id="contact.html">Contact</a></li>
+                    <li><a href="#" class="nav-link search-icon" id="search-toggle"><i class="fas fa-search"></i></a><input type="text" id="search-input" class="search-input hidden" placeholder="Search..."></li> 
+                    <li><a href="profile.html" class="nav-link" id="profile.html"><i class="fas fa-user"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="booking-form-section">
+        <div class="container">
+            <h2>Book Your Trip</h2>
+            <form id="book-form" method="POST" action="book.php">
+                <div class="form-group">
+                    <label for="trip-name">Trip Name:</label>
+                    <input type="text" id="trip-name" name="trip_name" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="trip-price">Price:</label>
+                    <input type="text" id="trip-price" name="trip_price" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="number-of-travelers">Number of Travelers:</label>
+                    <input type="number" id="number-of-travelers" name="number_of_travelers" min="1" max="" required>
+                </div>
+                
+                <a href="trips10.html" class="btn">Back</a> <button type="submit" class="btn">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TravelTales. All rights reserved.</p>
+        </div>
+        <div>
+            <h3>Follow Us</h3>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>  
+    </footer>
+
+    <!-- Include Flatpickr JS for date picker -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Include custom JS -->
+     <script>
+        // Function to extract URL parameters
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        name: params.get("name") || "",
+        price: params.get("price") || "",
+    };
+}
+
+// Function to populate the form fields
+function populateBookingForm() {
+    const { name, price } = getUrlParams();
+    
+    // Find the input fields
+    const tripNameInput = document.getElementById("trip-name");
+    const tripPriceInput = document.getElementById("trip-price");
+
+    // Check if elements exist and populate them
+    if (tripNameInput && tripPriceInput) {
+        tripNameInput.value = decodeURIComponent(name);
+        tripPriceInput.value = decodeURIComponent(price);
+    }
+}
+
+// Ensure the form is populated when the page loads
+document.addEventListener("DOMContentLoaded", populateBookingForm); 
+     </script>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

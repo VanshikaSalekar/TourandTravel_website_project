@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - TravelTales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="#" alt="">
+                <h1>TravelTales</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="login_register.html" class="nav-link" id="login_register.html">Login/Register</a></li>
+                    <li><a href="home.html" class="nav-link" id="home.html">Home</a></li>
+                    <li><a href="services.html" class="nav-link" id="services.html">Services</a></li>
+                    <li><a href="packages.html" class="nav-link" id="packages.html">Packages</a></li>
+                    <li><a href="blog.html" class="nav-link" id="packages.html">Blog</a></li>
+                    <li><a href="about.html" class="nav-link" id="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link" id="contact.html">Contact</a></li>
+                    <li><a href="#" class="nav-link search-icon" id="search-toggle"><i class="fas fa-search"></i></a><input type="text" id="search-input" class="search-input hidden" placeholder="Search..."></li> 
+                    <li><a href="profile.html" class="nav-link" id="profile.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="#" class="nav-link" id="logout-link" style="display: none;">Logout</a></li>                
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video id="hero-video" autoplay muted loop></video>
+        <div class="hero-content">
+            <h2>Your Profile.</h2>
+        </div>
+    </section>
+
+<!-- Profile Section -->
+<div class="profile-container">
+    <div class="profile-header">
+        <img id="profile-pic" src="default-avatar.jpg" alt="Profile Picture">
+        <input type="file" id="profile-pic-upload" accept="image/*">
+        <button id="upload-button">Upload Picture</button>
+    </div>
+
+    <div class="profile-details">
+        <h2>Profile Information</h2>
+        <p><strong>Name:</strong> <span id="user-name">Loading...</span> <button id="edit-name">Edit</button></p>
+        <p><strong>Email:</strong> <span id="user-email">Loading...</span> <button id="edit-email">Edit</button></p>
+        <p><strong>Bio:</strong> <span id="user-bio">Loading...</span> <button id="edit-bio">Edit</button></p>
+    </div>
+
+    <a href="#" id="logout-link" style="display:none;">Logout</a> <!-- Hide logout link initially -->
+</div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TravelTales. All rights reserved.</p>
+        </div>
+        <div>
+            <h3>Follow Us</h3>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+    </footer>
+
+    <script>
+        // List of video URLs
+        const videos = [
+            'video1.mp4',
+            'video2.mp4',
+            'video3.mp4',
+            'video4.mp4',
+        ];
+        
+        // Get the video element from the DOM
+        const heroVideo = document.getElementById('hero-video');
+        
+        // Current index for the videos array
+        let currentVideoIndex = 0;
+        
+        // Function to change the video source
+        function changeVideo() {
+            // Update the video source
+            heroVideo.src = videos[currentVideoIndex];
+            heroVideo.load();
+            heroVideo.play();
+        
+            // Move to the next video index
+            currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+        }
+        
+        // Initial call to play the first video
+        changeVideo();
+        
+        // Set an interval to change the video every 10 seconds
+        setInterval(changeVideo, 5000); // Change every 10 seconds
+        
+        // Event listener to change the video when the current one ends
+        heroVideo.addEventListener('ended', changeVideo);
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            // First, check if the user is logged in
+            checkSessionStatus();
+        });
+        
+        function checkSessionStatus() {
+            fetch('check_session.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "logged_out") {
+                        // Redirect if not logged in
+                        window.location.href = 'login_register.html';
+                    } else {
+                        // Fetch and display user data if logged in
+                        fetchUserData();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking session:', error);
+                });
+        }
+        
+        function fetchUserData() {
+            fetch('fetch_user_preferences.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        // Redirect if there's an error with the user data
+                        window.location.href = 'login_register.html';
+                    } else {
+                        // Display the fetched user info
+                        document.getElementById('user-name').innerText = data.name;
+                        document.getElementById('user-email').innerText = data.email;
+                        document.getElementById('user-bio').innerText = data.bio || "No bio added yet.";
+                        document.getElementById('profile-pic').src = data.profile_picture || "user-profile.png";
+        
+                        // Show logout link
+                        document.getElementById('logout-link').style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        }
+        
+        // Handle logout with a click event
+        document.getElementById("logout-link").addEventListener("click", function (e) {
+            e.preventDefault();
+            fetch('logout.php')
+                .then(() => {
+                    // Redirect to login after logging out
+                    window.location.href = 'login_register.html';
+                });
+        });
+        
+        // Profile Picture Upload Handler
+        document.getElementById("upload-button").addEventListener("click", () => {
+            const fileInput = document.getElementById("profile-pic-upload");
+            if (fileInput.files.length > 0) {
+                const formData = new FormData();
+                formData.append("profile_picture", fileInput.files[0]);
+        
+                fetch("upload_profile_picture.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("profile-pic").src = data.filepath;
+                        alert("Profile picture updated successfully!");
+                    } else {
+                        alert("Error uploading picture: " + (data.error || "Unknown error"));
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+            } else {
+                alert("Please select a picture to upload.");
+            }
+        });
+        
+        // Edit Profile Fields with Prompt
+        function editProfileField(field, displayName) {
+            const newValue = prompt(`Enter new ${displayName}:`);
+            if (newValue) updateProfileField(field, newValue);
+        }
+        
+        document.getElementById("edit-email").addEventListener("click", () => editProfileField("email", "email"));
+        document.getElementById("edit-name").addEventListener("click", () => editProfileField("name", "name"));
+        document.getElementById("edit-bio").addEventListener("click", () => editProfileField("bio", "bio"));
+        
+        // Update Profile Field Function
+        function updateProfileField(field, value) {
+            fetch("update_profile.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ field, value }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`user-${field}`).innerText = value;
+                    alert(`${field.charAt(0).toUpperCase() + field.slice(1)} updated successfully!`);
+                } else {
+                    alert("Error updating profile: " + (data.error || "Unknown error"));
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+        
+        // Load User Preferences on Page Load
+        window.addEventListener("load", () => {
+            fetch("fetch_user_preferences.php")
+                .then(response => response.json())
+                .then(data => {
+                    // Set profile picture, name, email, and bio
+                    document.getElementById("profile-pic").src = data.profile_picture || "user-profile.png";
+                    document.getElementById("user-name").innerText = data.name || "No name set";
+                    document.getElementById("user-email").innerText = data.email || "No email set";
+                    document.getElementById("user-bio").innerText = data.bio || "No bio added yet.";
+                })
+                .catch(error => console.error("Error loading preferences:", error));
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the current URL path (file name)
+            var currentUrl = window.location.pathname.split('/').pop(); 
+            
+            // Select all navigation links
+            var navLinks = document.querySelectorAll('.nav-link');
+            
+            // Loop through links and add 'active' class to the current page
+            navLinks.forEach(function(link) {
+                var linkPath = link.getAttribute('href').split('/').pop();
+                if (linkPath === currentUrl) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        </script>        
+</body>
+
+</html>    

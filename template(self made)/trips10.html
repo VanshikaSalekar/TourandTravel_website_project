@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Package - TravelTales</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Flatpickr CSS for date picker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="#" alt="">
+                <h1>TravelTales</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="login_register.html" class="nav-link" id="login_register.html">Login/Register</a></li>
+                    <li><a href="home.html" class="nav-link" id="home.html">Home</a></li>
+                    <li><a href="services.html" class="nav-link" id="services.html">Services</a></li>
+                    <li><a href="packages.html" class="nav-link" id="packages.html">Packages</a></li>
+                    <li><a href="blog.html" class="nav-link" id="blog.html">Blog</a></li>
+                    <li><a href="about.html" class="nav-link" id="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link" id="contact.html">Contact</a></li>
+                    <li><a href="#" class="nav-link search-icon" id="search-toggle"><i class="fas fa-search"></i></a><input type="text" id="search-input" class="search-input hidden" placeholder="Search..."></li> 
+                    <li><a href="profile.html" class="nav-link" id="profile.html"><i class="fas fa-user"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+     <!--Hero Section-->
+     <section class="hero">
+        <video id="hero-video" autoplay muted loop></video>
+        <div class="hero-content">
+            <h2>Explore the World with TravelTales</h2>
+            <p>Your adventure starts here. We offer a range of services to make your journey unforgettable.</p>
+            <a href="services.html" class="btn">Discover More</a>
+        </div>
+    </section>
+
+    <!-- Trips Section -->
+    <section id="trips" class="trips">
+        <div class="container">
+            <h3>Island Hopping</h3>
+            <p>Explore multiple islands in one trip with our island hopping packages.</p>
+            <div class="trip-item">
+                <!--trip 1-->
+                <div class="trip-item">
+                    <img src="island1.png">
+                    <h3>Greek Islands</h3>
+                    <p>Price:  ₹3,20,000</p>
+                    <a href="packages.html" class="btn">Back</a> <a href="book10.html?name=Greek+Islands&price=320000" class="btn">Book Now</a>
+                </div>
+                <div class="trip-item">
+                    <img src="island2.png">
+                    <h3>Hawaiian Islands, USA</h3>
+                    <p>Price: ₹4,00,000</p>
+                    <a href="packages.html" class="btn">Back</a> <a href="book10.html?name=Hawaiian+Islands,+USA&price=400000" class="btn">Book Now</a>
+                </div>
+                <div class="trip-item">
+                    <img src="island3.png">
+                    <h3>Whitsunday Islands, Australia</h3>
+                    <p>Price: ₹3,60,000</p>
+                    <a href="packages.html" class="btn">Back</a> <a href="book10.html?name=Whitsunday+Islands,+Australia&price=360000" class="btn">Book Now</a>
+                </div>
+                <div class="trip-item">
+                    <img src="island4.png">
+                    <h3>Fijian Islands</h3>
+                    <p>Price: ₹3,80,000</p>
+                    <a href="packages.html" class="btn">Back</a> <a href="book10.html?name=Fijian+Islands&price=380000" class="btn">Book Now</a>
+                </div>
+                <div class="trip-item">
+                    <img src="island5.png">
+                    <h3>Maldives Atolls</h3>
+                    <p>Price: ₹3,00,000</p>
+                    <a href="packages.html" class="btn">Back</a> <a href="book10.html?name=Maldives+Atolls&price=300000" class="btn">Book Now</a>
+                </div>
+                <div class="trip-item">
+                    <img src="island6.png">
+                    <h3>Balearic Islands, Spain</h3>
+                    <p>Price:  ₹2,50,000</p>
+                    <a href="packages.html" class="btn">Back</a> <a href="book10.html?name=Balearic+Islands,+Spain&price=250000" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+        
+             <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TravelTales. All rights reserved.</p>
+        </div>
+        <div>
+            <h3>Follow Us</h3>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>  
+    </footer>
+
+    <!-- Include custom JS -->
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

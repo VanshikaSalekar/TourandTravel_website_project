@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<style>
+    .search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-input {
+    display: none;
+    padding: 8px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.search-input.hidden {
+    display: none;
+}
+
+.search-results {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    width: 200px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-results div {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.search-results div:hover {
+    background-color: #f1f1f1;
+}
+
+.search-icon {
+    cursor: pointer;
+}
+</style>
+<body>
+
+    <!-- Search Icon and Input -->
+    <div class="search-container">
+        <i id="search-toggle" class="search-icon fas fa-search"></i> <!-- FontAwesome icon -->
+        <input type="text" id="search-input" class="search-input hidden" placeholder="Search..." autocomplete="on">
+    </div>
+
+    <!-- Search Results Section -->
+    <div id="search-results" class="search-results"></div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome for icons -->
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    <script>
+        //search section
+document.getElementById('search-toggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    const searchInput = document.getElementById('search-input');
+    searchInput.classList.toggle('hidden');
+
+    if (!searchInput.classList.contains('hidden')) {
+        searchInput.focus();
+    } else {
+        searchInput.blur();
+    }
+});
+
+document.getElementById('search-input').addEventListener('keyup', function () {
+    const query = this.value;
+
+    if (query.length > 0) {
+        // AJAX request to fetch search results
+        fetch(`search.php?query=${encodeURIComponent(query)}`)
+            .then(response => response.text())
+            .then(data => {
+                // Display search results directly below the search bar
+                document.getElementById('search-results').innerHTML = data;
+                document.getElementById('search-results').style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+    } else {
+        document.getElementById('search-results').innerHTML = ''; // Clear results if input is empty
+        document.getElementById('search-results').style.display = 'none'; // Hide results container
+    }
+});
+    </script>
+</body>
+</html>
